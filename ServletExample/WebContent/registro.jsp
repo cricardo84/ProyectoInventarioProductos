@@ -4,14 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registro</title>
+<%@ include file="principal/componentes/head.jsp" %>
+<link rel="stylesheet" type="text/css" href="principal/css/formulario.css">
+<title>Registro de producto</title>
 </head>
 <body>
-<form action="registroProducto" method="post">
-Nombre: <input type="text" name="nombreProducto">
-Descripcion: <input type="text" name="descripcionProducto">
-Cantidad: <input type="text" name="cantidadProducto">
-<input type="submit" value="Enviar">
+<%@ include file="principal/componentes/navegacion.jsp" %>
+
+<form action="registroProducto" method="post" class="form-register">
+	<h2 class="form-titulo">Ingresar Producto</h2>
+	
+	<div class="contenedor-inputs">
+
+		<input type="text" name="nombreProducto" placeholder="Nombre" class="input-100" required>
+		<input type="text" name="descripcionProducto" placeholder="Descripción" class="input-100" required>
+		<input type="text" name="cantidadProducto" placeholder="Cantidad" class="input-100" required>
+		<input type="submit" value="Enviar" class="btn-enviar">
+
+	</div>
+
+
+<%@ include file="principal/componentes/footer.jsp" %>
+<%@ include file="principal/componentes/scripts.jsp" %>
+
 </form>
 </body>
 </html>

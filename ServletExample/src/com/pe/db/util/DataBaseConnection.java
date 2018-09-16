@@ -31,9 +31,11 @@ public class DataBaseConnection {
         try {
         	inicializarConexion();
             // Statements allow to issue SQL queries to the database
-            statement = connect.createStatement();
+        	statement = connect.prepareStatement("select * from producto");
+        	resultSet = statement.executeQuery("select * from producto");
+            /*statement = connect.createStatement();*/
             // Result set get the result of the SQL query
-            resultSet = statement.executeQuery("select * from producto");
+            /*resultSet = statement.executeQuery("select * from producto");*/
             writeResultSet(resultSet);
 
         } catch (Exception e) {

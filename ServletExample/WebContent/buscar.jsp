@@ -5,12 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="principal/componentes/head.jsp" %>
-<title>Megos Ventas</title>
+<title>Buscar Productos</title>
 </head>
-<body style="background: #204862;">
-
+<body>
+	
 <%@ include file="principal/componentes/navegacion.jsp" %>
-<%@ include file="principal/componentes/paginacontenido.jsp" %>
+
+	<div>
+		<h2>Listado de productos</h2>
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Cantidad</th>
+			</tr>
+			<%
+			%>
+			<tr>
+				
+			</tr>
+		</table>
+	</div>
+
 <%@ include file="principal/componentes/footer.jsp" %>
 <%@ include file="principal/componentes/scripts.jsp" %>
 
