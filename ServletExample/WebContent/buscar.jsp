@@ -19,7 +19,7 @@
 				<th>Nombre</th>
 				<th>Descripción</th>
 				<th>Cantidad</th>
-			</tr>
+			</tr>  
 			<%
 			%>
 			<tr>
