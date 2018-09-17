@@ -26,7 +26,7 @@
 				<th>Cantidad</th>
 			</tr>  
 			<% List<Producto> listadoProducto = (ArrayList<Producto>)request.getAttribute("listadoProductos");
-				for(Producto producto : listadoProducto){ %>
+				 for(Producto producto : listadoProducto){ %>
 			<tr>
 				<td><%= producto.getId() %></td>
 				<td><%= producto.getNombre() %></td>
