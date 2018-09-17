@@ -23,21 +23,19 @@ public class DataBaseConnection {
     String password = "admin";
     
     private void inicializarConexion() throws Exception{
-    	// This will load the MySQL driver, each DB has its own driver
+
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        // Setup the connection with the DB
+
         connect = DriverManager.getConnection(url, username, password);
     }
     
 	public List<Producto> obtenerTodosLosProductos() throws Exception {
         try {
         	inicializarConexion();
-            // Statements allow to issue SQL queries to the database
+        	
             statement = connect.createStatement();
-            // Result set get the result of the SQL query
-            resultSet = statement.executeQuery("select * from producto");
             
-            //writeResultSet(resultSet);
+            resultSet = statement.executeQuery("select * from producto");
             
             List<Producto> listadoProductos = new ArrayList<>();
             while (resultSet.next()) {
@@ -59,7 +57,7 @@ public class DataBaseConnection {
         } catch (Exception e) {
             throw e;
         } finally {
-            cerrarConexion();
+        	connect.close();
         }
 
     }
@@ -67,22 +65,20 @@ public class DataBaseConnection {
 	public void insertarProducto(Producto producto) throws Exception{
 		try {
 			inicializarConexion();
-			// PreparedStatements can use variables and are more efficient
+			
+			//Para insertar registros en la BD
 			preparedStatement = connect.prepareStatement("insert into  producto (nombre, descripcion, cantidad) values ( ?, ?, ?)");
-
-			// Parameters start with 1
 			preparedStatement.setString(1, producto.getNombre());
 			preparedStatement.setString(2, producto.getDescripcion());
 			preparedStatement.setInt(3, producto.getCantidad());
+			
+			//Para la ejecucion
 			preparedStatement.executeUpdate();
 
-			//preparedStatement = connect.prepareStatement("SELECT * from producto");
-			//resultSet = preparedStatement.executeQuery();
-			//writeResultSet(resultSet);
 		} catch (Exception e) {
             throw e;
         } finally {
-            cerrarConexion();
+        	 connect.close();
         }
 	}
 	
@@ -93,55 +89,10 @@ public class DataBaseConnection {
 			preparedStatement.setString(1, idProducto);
 			preparedStatement.executeUpdate();
 
-			//resultSet = statement.executeQuery("select * from producto");
-			//writeMetaData(resultSet);
         } catch (Exception e) {
             throw e;
         } finally {
-            cerrarConexion();
+        	 connect.close();
         }
 	}
-	
-	private void writeMetaData(ResultSet resultSet) throws SQLException {
-
-        System.out.println("The columns in the table are: ");
-
-        System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
-        for  (int i = 1; i<= resultSet.getMetaData().getColumnCount(); i++){
-            System.out.println("Column " +i  + " "+ resultSet.getMetaData().getColumnName(i));
-        }
-    }
-
-    private void writeResultSet(ResultSet resultSet) throws SQLException {
-        // ResultSet is initially before the first data set
-        while (resultSet.next()) {
-            String id = resultSet.getString("id");
-            String nombre = resultSet.getString("nombre");
-            String descripcion = resultSet.getString("descripcion");
-            String cantidad = resultSet.getString("cantidad");
-            
-            System.out.println("id: " + id);
-            System.out.println("nombre: " + nombre);
-            System.out.println("descripcion: " + descripcion);
-            System.out.println("cantidad: " + cantidad);
-        }
-    }
-
-    private void cerrarConexion() {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-
-            if (statement != null) {
-                statement.close();
-            }
-
-            if (connect != null) {
-                connect.close();
-            }
-        } catch (Exception e) {
-
-        }
-    }
 }

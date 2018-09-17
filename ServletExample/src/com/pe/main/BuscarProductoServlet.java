@@ -19,11 +19,18 @@ public class BuscarProductoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			
+			//Se instancia la clase que implementa la interface
 			ProductoService productoService = new ProductoServiceImpl();
+			
+			//Devuelve un listado de elementos Producto
 			List<Producto> listadoProductos = productoService.buscarProductos();
 			
+			//Cargo al request y le asigno un nombre 
 			request.setAttribute("listadoProductos", listadoProductos);
+			//Para direccionar al jsp
 			request.getRequestDispatcher("buscar.jsp").forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

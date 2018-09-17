@@ -10,34 +10,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="principal/componentes/head.jsp" %>
+<link href="principal/css2/bootstrap.min.css">
 <title>Buscar Productos</title>
 </head>
 <body>
 	
 <%@ include file="principal/componentes/navegacion.jsp" %>
-
-	<div>
-		<h2>Listado de productos</h2>
-		<table>
+<br>
+	<div class="container">
+		<h2 style="text-align:center;">Listado de productos</h2>
+		<br>
+		<table class="table table-bordered">
 			<tr>
-				<th>Id</th>
-				<th>Nombre</th>
-				<th>Descripción</th>
-				<th>Cantidad</th>
+				<th class="text-center">ID</th>
+				<th class="text-center">NOMBRE</th>
+				<th class="text-center">DESCRIPCIÓN</th>
+				<th class="text-center">CANTIDAD</th>
+				<th class="text-center">ACCIONES</th>
 			</tr>  
 			<% List<Producto> listadoProducto = (ArrayList<Producto>)request.getAttribute("listadoProductos");
 				 for(Producto producto : listadoProducto){ %>
 			<tr>
-				<td><%= producto.getId() %></td>
-				<td><%= producto.getNombre() %></td>
-				<td><%= producto.getDescripcion() %></td>
-				<td><%= producto.getCantidad() %></td>
+				<td class="text-center"><%= producto.getId() %></td>
+				<td class="text-center"><%= producto.getNombre() %></td>
+				<td class="text-center"><%= producto.getDescripcion() %></td>
+				<td class="text-center"><%= producto.getCantidad() %></td>
+				<td class="text-center">
+					<a href="#" class="btn btn-warning btn-sm">Editar</a>
+					<a class="btn btn-danger btn-sm">Eliminar</a>
+				</td>
 			</tr>
 			<%
 			}
 			%>
 			
 		</table>
+		<br>
 	</div>
 
 <%@ include file="principal/componentes/footer.jsp" %>
