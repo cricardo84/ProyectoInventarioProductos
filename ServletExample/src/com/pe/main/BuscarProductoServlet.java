@@ -20,7 +20,6 @@ public class BuscarProductoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			ProductoService productoService = new ProductoServiceImpl();
-			
 			List<Producto> listadoProductos = productoService.buscarProductos();
 			
 			request.setAttribute("listadoProductos", listadoProductos);
