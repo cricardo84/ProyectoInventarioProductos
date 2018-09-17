@@ -13,7 +13,7 @@ import com.pe.service.ProductoService;
 import com.pe.service.impl.ProductoServiceImpl;
 
 @WebServlet("/registroProducto")
-public class MainServlet extends HttpServlet {
+public class RegistroProductoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.pe.bean.Producto;
 
@@ -27,17 +29,33 @@ public class DataBaseConnection {
         connect = DriverManager.getConnection(url, username, password);
     }
     
-	public void obtenerTodosLosProductos() throws Exception {
+	public List<Producto> obtenerTodosLosProductos() throws Exception {
         try {
         	inicializarConexion();
             // Statements allow to issue SQL queries to the database
-        	statement = connect.prepareStatement("select * from producto");
-        	resultSet = statement.executeQuery("select * from producto");
-            /*statement = connect.createStatement();*/
+            statement = connect.createStatement();
             // Result set get the result of the SQL query
-            /*resultSet = statement.executeQuery("select * from producto");*/
-            writeResultSet(resultSet);
-
+            resultSet = statement.executeQuery("select * from producto");
+            
+            //writeResultSet(resultSet);
+            
+            List<Producto> listadoProductos = new ArrayList<>();
+            while (resultSet.next()) {
+                Long id = resultSet.getLong("id");
+                String nombre = resultSet.getString("nombre");
+                String descripcion = resultSet.getString("descripcion");
+                int cantidad = resultSet.getInt("cantidad");
+                
+                Producto producto = new Producto();
+                producto.setId(id);
+                producto.setNombre(nombre);
+                producto.setDescripcion(descripcion);
+                producto.setCantidad(cantidad);
+                
+                listadoProductos.add(producto);
+            }
+            
+            return listadoProductos;
         } catch (Exception e) {
             throw e;
         } finally {
@@ -97,10 +115,6 @@ public class DataBaseConnection {
     private void writeResultSet(ResultSet resultSet) throws SQLException {
         // ResultSet is initially before the first data set
         while (resultSet.next()) {
-            // It is possible to get the columns via name
-            // also possible to get the columns via the column number
-            // which starts at 1
-            // e.g. resultSet.getSTring(2);
             String id = resultSet.getString("id");
             String nombre = resultSet.getString("nombre");
             String descripcion = resultSet.getString("descripcion");

@@ -14,7 +14,7 @@
               <a class="nav-link" href="registro.jsp">Registrar Producto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="buscar.jsp">Buscar Productos</a>
+              <a class="nav-link" href="buscarProducto">Buscar Productos</a>
             </li>
           </ul>
         </div>
