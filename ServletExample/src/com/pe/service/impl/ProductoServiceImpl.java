@@ -23,5 +23,6 @@ public class ProductoServiceImpl implements ProductoService {
 		DataBaseConnection db = new DataBaseConnection();
 		return db.obtenerTodosLosProductos();
 	}
+	
 
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pe.bean.Producto;
+import com.pe.bean.Usuario;
 
 public class DataBaseConnection {
 
@@ -95,4 +96,48 @@ public class DataBaseConnection {
         	 connect.close();
         }
 	}
+	
+	public void registroUsuario(Usuario usuario) throws Exception {
+		try {
+			
+			inicializarConexion();
+			preparedStatement = connect.prepareStatement("insert into usuario (nombre,apellidos,usuario,contraseña) values (?, ?, ?, ?)");
+			preparedStatement.setString(1, usuario.getNombre());
+			preparedStatement.setString(2, usuario.getNombre());
+			preparedStatement.setString(3, usuario.getUsuario());
+			preparedStatement.setString(4, usuario.getContraseña());
+			
+			preparedStatement.executeUpdate();
+			
+		} catch(Exception e) {
+			throw e;
+		} finally {
+			connect.close();
+		}
+	}
+	
+	public boolean autenticacion(String usuario, String contraseña) throws Exception {
+		
+		try {
+			
+			inicializarConexion();
+			String consulta = "insert into usuario where usuario=? and contraseña=?";
+			preparedStatement = connect.prepareStatement(consulta);
+			preparedStatement.setString(1, usuario);
+			preparedStatement.setString(2, contraseña);
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.absolute(1)) {
+				return true;
+			}
+			
+		} catch(Exception e) {
+			throw e;
+		} finally {
+			connect.close();
+		}
+		
+		return false;
+	}
+	
 }
