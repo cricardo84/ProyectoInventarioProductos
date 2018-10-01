@@ -8,22 +8,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Override
 	public void registrarUsuario(Usuario usuario) throws Exception{
-		try {
 			DataBaseConnection db = new DataBaseConnection();
 			db.registroUsuario(usuario);
-		} catch(Exception e) {
-			throw e;
-		}
 	}
 	
-	public boolean validarUsuario(String usuario, String contraseña) throws Exception {
-		try {
+	public boolean validarUsuario(Usuario usuario) throws Exception {
 			DataBaseConnection db = new DataBaseConnection();
-			db.autenticacion(usuario, contraseña);
-			return true;
-		} catch(Exception e) {
-			throw e;
-		}
+			return db.autenticacion(usuario);		
 	}
 
 }

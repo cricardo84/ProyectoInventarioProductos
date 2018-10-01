@@ -10,18 +10,26 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Override
 	public void registrarProducto(Producto producto) throws Exception {
-		try {
 			DataBaseConnection db = new DataBaseConnection();
 			db.insertarProducto(producto);
-		} catch (Exception e) {
-			 throw e;
-		}
 	}
 
 	@Override
 	public List<Producto> buscarProductos() throws Exception {
 		DataBaseConnection db = new DataBaseConnection();
 		return db.obtenerTodosLosProductos();
+	}
+
+	@Override
+	public void cambiarEstadoProduto(int productoId) throws Exception {
+		DataBaseConnection db = new DataBaseConnection();
+		db.cambiarEstadoProducto(productoId);
+	}
+
+	@Override
+	public Producto obtenerProducto(int productoId) throws Exception {
+		DataBaseConnection db = new DataBaseConnection();
+		return db.obtenerProducto(productoId);
 	}
 	
 

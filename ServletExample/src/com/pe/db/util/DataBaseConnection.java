@@ -1,10 +1,10 @@
 package com.pe.db.util;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +44,14 @@ public class DataBaseConnection {
                 String nombre = resultSet.getString("nombre");
                 String descripcion = resultSet.getString("descripcion");
                 int cantidad = resultSet.getInt("cantidad");
+                boolean activo = resultSet.getBoolean("activo");
                 
                 Producto producto = new Producto();
                 producto.setId(id);
                 producto.setNombre(nombre);
                 producto.setDescripcion(descripcion);
                 producto.setCantidad(cantidad);
+                producto.setActivo(activo);
                 
                 listadoProductos.add(producto);
             }
@@ -68,10 +70,11 @@ public class DataBaseConnection {
 			inicializarConexion();
 			
 			//Para insertar registros en la BD
-			preparedStatement = connect.prepareStatement("insert into  producto (nombre, descripcion, cantidad) values ( ?, ?, ?)");
+			preparedStatement = connect.prepareStatement("insert into  producto (nombre, descripcion, cantidad, imagen) values ( ?, ?, ?, ?)");
 			preparedStatement.setString(1, producto.getNombre());
 			preparedStatement.setString(2, producto.getDescripcion());
 			preparedStatement.setInt(3, producto.getCantidad());
+			preparedStatement.setBytes(4, producto.getImagen());
 			
 			//Para la ejecucion
 			preparedStatement.executeUpdate();
@@ -116,28 +119,68 @@ public class DataBaseConnection {
 		}
 	}
 	
-	public boolean autenticacion(String usuario, String contraseña) throws Exception {
+	public boolean autenticacion(Usuario usuario) throws Exception {
+			
+		inicializarConexion();
+		String consulta = "select * from usuario where usuario=? and contraseña=?";
+		preparedStatement = connect.prepareStatement(consulta);
+		preparedStatement.setString(1, usuario.getUsuario());
+		preparedStatement.setString(2, usuario.getContraseña());
+		resultSet = preparedStatement.executeQuery();
 		
-		try {
-			
-			inicializarConexion();
-			String consulta = "insert into usuario where usuario=? and contraseña=?";
-			preparedStatement = connect.prepareStatement(consulta);
-			preparedStatement.setString(1, usuario);
-			preparedStatement.setString(2, contraseña);
-			resultSet = preparedStatement.executeQuery();
-			
-			if(resultSet.absolute(1)) {
-				return true;
-			}
-			
-		} catch(Exception e) {
-			throw e;
-		} finally {
-			connect.close();
+		if(resultSet.absolute(1)) {
+			return true;
 		}
 		
+		connect.close();
 		return false;
 	}
+
+	public void cambiarEstadoProducto(int productoId) throws Exception{
+		inicializarConexion();
+		String cambiarEstadoProductoQuery = "UPDATE PRODUCTO set activo = (CASE activo WHEN false THEN true ELSE false END) where id = ?";
+		preparedStatement = connect.prepareStatement(cambiarEstadoProductoQuery);
+		preparedStatement.setInt(1, productoId);
+		preparedStatement.executeUpdate();
+		connect.close();
+	}
+	
+	public Producto obtenerProducto(int productoId) throws Exception {
+
+        	inicializarConexion();
+        	
+            statement = connect.createStatement();
+            
+            String consulta = "select * from producto where id=?";
+            
+            preparedStatement = connect.prepareStatement(consulta);
+    		preparedStatement.setLong(1, productoId);
+
+    		resultSet = preparedStatement.executeQuery();
+    		
+    		Producto producto = new Producto();
+    		
+    		while (resultSet.next()) {
+	            Long id = resultSet.getLong("id");
+	            String nombre = resultSet.getString("nombre");
+	            String descripcion = resultSet.getString("descripcion");
+	            int cantidad = resultSet.getInt("cantidad");
+	            Blob imagen = resultSet.getBlob("imagen");
+	            boolean activo = resultSet.getBoolean("activo");
+	            
+	            producto.setId(id);
+	            producto.setNombre(nombre);
+	            producto.setDescripcion(descripcion);
+	            producto.setCantidad(cantidad);
+	            
+	            byte[] imagenProducto = imagen.getBytes(1, (int)imagen.length());
+	            
+	            producto.setImagen(imagenProducto);
+	            producto.setActivo(activo);
+    		}
+
+            connect.close();
+            return producto;
+    }
 	
 }

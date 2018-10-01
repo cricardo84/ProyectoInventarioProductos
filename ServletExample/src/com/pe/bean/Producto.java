@@ -6,6 +6,10 @@ public class Producto {
 	private String nombre;
 	private String descripcion;
 	private int cantidad;
+	private boolean activo;
+	private byte[] imagen;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -29,5 +33,17 @@ public class Producto {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	public boolean isActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+	public byte[] getImagen() {
+		return imagen;
+	}
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
 	}
 }

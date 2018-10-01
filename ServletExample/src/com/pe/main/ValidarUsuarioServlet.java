@@ -7,16 +7,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pe.bean.Usuario;
+import com.pe.service.UsuarioService;
+import com.pe.service.impl.UsuarioServiceImpl;
+
 @WebServlet("/validarUsuario")
 public class ValidarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		try {
+			String usuario = (String)request.getParameter("usuario");
+			String contraseña = (String)request.getParameter("contraseña");
+			
+			Usuario usuarios = new Usuario();
+			usuarios.setUsuario(usuario);
+			usuarios.setContraseña(contraseña);
+			
+			UsuarioService usuarioService = new UsuarioServiceImpl();
+			boolean validacion = usuarioService.validarUsuario(usuarios);
+			
+			if (validacion) {
+				response.sendRedirect("index.jsp");
+			}else {
+				String error = "La cuenta ingresada no existe";
+				request.setAttribute("mensajeError", error);
+				request.getRequestDispatcher("validarUsuario.jsp").forward(request, response);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

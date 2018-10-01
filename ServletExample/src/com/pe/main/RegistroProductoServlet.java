@@ -24,13 +24,15 @@ public class RegistroProductoServlet extends HttpServlet {
 			//Obtener informacion del formulario
 			String nombreProducto = (String)request.getParameter("nombreProducto");
 			String descripcionProducto = (String)request.getParameter("descripcionProducto");
-			Integer cantidadProducto = Integer.parseInt(request.getParameter("cantidadProducto"));
+			String cantidadProducto = (String)request.getParameter("cantidadProducto");
+			String imagenProducto = (String)request.getParameter("imagenProducto");
 
 			//Setear informacion del formulario en un Bean
 			Producto producto = new Producto();
 			producto.setNombre(nombreProducto);
 			producto.setDescripcion(descripcionProducto);
-			producto.setCantidad(cantidadProducto);
+			producto.setCantidad(Integer.parseInt(cantidadProducto));
+			producto.setImagen(imagenProducto.getBytes());
 		
 			//Registrar el producto
 			ProductoService productoService = new ProductoServiceImpl();
@@ -38,6 +40,7 @@ public class RegistroProductoServlet extends HttpServlet {
 			
 			//Mostrar la pagina inicial
 			response.sendRedirect("index.jsp");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

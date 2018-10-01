@@ -26,6 +26,8 @@
 				<th class="text-center">NOMBRE</th>
 				<th class="text-center">DESCRIPCIÓN</th>
 				<th class="text-center">CANTIDAD</th>
+				<th class="text-center">IMAGEN</th>
+				<th class="text-center">ESTADO</th>
 				<th class="text-center">ACCIONES</th>
 			</tr>  
 			<% List<Producto> listadoProducto = (ArrayList<Producto>)request.getAttribute("listadoProductos");
@@ -35,9 +37,13 @@
 				<td class="text-center"><%= producto.getNombre() %></td>
 				<td class="text-center"><%= producto.getDescripcion() %></td>
 				<td class="text-center"><%= producto.getCantidad() %></td>
+				<td class="text-center"><img src="obtenerImagen?id=<%=producto.getId()%>"></td>
+				<td class="text-center"><%= (producto.isActivo()==true)?"Activo":"Inactivo" %></td>
 				<td class="text-center">
 					<a href="#" class="btn btn-warning btn-sm">Editar</a>
-					<a class="btn btn-danger btn-sm">Eliminar</a>
+					<a href="cambiarEstadoDelProducto?id=<%=producto.getId()%>" class="btn btn-danger btn-sm">
+					<%= (producto.isActivo()==true)?"Deshabilitar":"Habilitar" %>
+					</a>
 				</td>
 			</tr>
 			<%
