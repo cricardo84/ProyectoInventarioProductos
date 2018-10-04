@@ -32,5 +32,11 @@ public class ProductoServiceImpl implements ProductoService {
 		return db.obtenerProducto(productoId);
 	}
 	
+	@Override
+	public void modificarProducto(Producto producto) throws Exception {
+		DataBaseConnection db = new DataBaseConnection();
+		db.modificarProducto(producto);
+	}
+	
 
 }

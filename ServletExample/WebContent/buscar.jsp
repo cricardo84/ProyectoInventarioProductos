@@ -40,7 +40,7 @@
 				<td class="text-center"><img src="obtenerImagen?id=<%=producto.getId()%>"></td>
 				<td class="text-center"><%= (producto.isActivo()==true)?"Activo":"Inactivo" %></td>
 				<td class="text-center">
-					<a href="#" class="btn btn-warning btn-sm">Editar</a>
+					<a href="editarProducto.jsp?id=<%= producto.getId() %>" class="btn btn-warning btn-sm">Editar</a>
 					<a href="cambiarEstadoDelProducto?id=<%=producto.getId()%>" class="btn btn-danger btn-sm">
 					<%= (producto.isActivo()==true)?"Deshabilitar":"Habilitar" %>
 					</a>
