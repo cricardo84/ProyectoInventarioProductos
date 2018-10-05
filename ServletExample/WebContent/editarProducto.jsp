@@ -31,6 +31,8 @@
 		<input type="text" name="cantidadProducto" placeholder="Cantidad" class="input-100"  values="<%= producto.getCantidad() %>" required/>
 		<input type="file" name="imagenProducto" values="<%= producto.getImagen()%>"/>
 		<input type="submit" value="Modificar" class="btn-enviar"/>
+		
+		<br>
 
 </body>
 </html>
