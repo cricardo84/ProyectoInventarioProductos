@@ -106,7 +106,7 @@ public class DataBaseConnection {
 			inicializarConexion();
 			preparedStatement = connect.prepareStatement("insert into usuario (nombre,apellidos,usuario,contraseña) values (?, ?, ?, ?)");
 			preparedStatement.setString(1, usuario.getNombre());
-			preparedStatement.setString(2, usuario.getNombre());
+			preparedStatement.setString(2, usuario.getApellidos());
 			preparedStatement.setString(3, usuario.getUsuario());
 			preparedStatement.setString(4, usuario.getContraseña());
 			
@@ -186,7 +186,7 @@ public class DataBaseConnection {
 	public void modificarProducto(Producto producto) throws Exception {
 		
 		inicializarConexion();
-		String consulta = "UPDATE USUARIO SET NOMBRE=?,DESCRIPCION=?,CANTIDAD=?,IMAGEN=?";
+		String consulta = "UPDATE PRODUCTO SET NOMBRE=?,DESCRIPCION=?,CANTIDAD=?,IMAGEN=? WHERE ID=?";
 		preparedStatement = connect.prepareStatement(consulta);
 		preparedStatement.setString(1, producto.getNombre());
 		preparedStatement.setString(2, producto.getDescripcion());

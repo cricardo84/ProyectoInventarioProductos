@@ -18,14 +18,13 @@ public class ModificarProductoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			//Obtener informacion del formulario
+			
 			int id = Integer.parseInt(request.getParameter("id"));
 			String nombreProducto = (String)request.getParameter("nombreProducto");
 			String descripcionProducto = (String)request.getParameter("descripcionProducto");
 			String cantidadProducto = (String)request.getParameter("cantidadProducto");
 			String imagenProducto = (String)request.getParameter("imagenProducto");
 
-			//Setear informacion del formulario en un Bean
 			Producto producto = new Producto();
 			producto.setNombre(nombreProducto);
 			producto.setDescripcion(descripcionProducto);
