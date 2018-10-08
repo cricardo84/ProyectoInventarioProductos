@@ -1,5 +1,7 @@
 package com.pe.bean;
 
+import java.util.Arrays;
+
 public class Producto {
 
 	private long id;
@@ -46,4 +48,10 @@ public class Producto {
 	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", cantidad=" + cantidad
+				+ ", activo=" + activo + ", imagen=" + Arrays.toString(imagen) + "]";
+	}
+	
 }

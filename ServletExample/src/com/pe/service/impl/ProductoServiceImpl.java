@@ -38,5 +38,4 @@ public class ProductoServiceImpl implements ProductoService {
 		db.modificarProducto(producto);
 	}
 	
-
 }

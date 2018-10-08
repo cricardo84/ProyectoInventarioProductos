@@ -186,12 +186,12 @@ public class DataBaseConnection {
 	public void modificarProducto(Producto producto) throws Exception {
 		
 		inicializarConexion();
-		String consulta = "UPDATE PRODUCTO SET NOMBRE=?,DESCRIPCION=?,CANTIDAD=?,IMAGEN=? WHERE ID=?";
+		String consulta = "UPDATE producto SET nombre=?, descripcion=?, cantidad=? WHERE id=?";
 		preparedStatement = connect.prepareStatement(consulta);
 		preparedStatement.setString(1, producto.getNombre());
 		preparedStatement.setString(2, producto.getDescripcion());
 		preparedStatement.setInt(3, producto.getCantidad());
-		preparedStatement.setBytes(4, producto.getImagen());
+		preparedStatement.setLong(4, producto.getId());
 		
 		preparedStatement.executeUpdate();
 		connect.close();

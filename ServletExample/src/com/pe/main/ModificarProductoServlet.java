@@ -1,6 +1,9 @@
 package com.pe.main;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,20 +22,25 @@ public class ModificarProductoServlet extends HttpServlet {
 		
 		try {
 			
-			int id = Integer.parseInt(request.getParameter("id"));
-			String nombreProducto = (String)request.getParameter("nombreProducto");
-			String descripcionProducto = (String)request.getParameter("descripcionProducto");
-			String cantidadProducto = (String)request.getParameter("cantidadProducto");
-			String imagenProducto = (String)request.getParameter("imagenProducto");
-
+			String idProducto = (String)request.getParameter("idProducto");
+			String nombreProducto = (String)request.getParameter("newNombre");
+			String descripcionProducto = (String)request.getParameter("newDescripcion");
+			String cantidadProducto = (String)request.getParameter("newCantidad");
+			
 			Producto producto = new Producto();
+			producto.setId(Long.parseLong(idProducto));
 			producto.setNombre(nombreProducto);
 			producto.setDescripcion(descripcionProducto);
 			producto.setCantidad(Integer.parseInt(cantidadProducto));
-			producto.setImagen(imagenProducto.getBytes());
+			
+			System.out.println(producto.toString());
 			
 			ProductoService productoService = new ProductoServiceImpl();
 			productoService.modificarProducto(producto);
+			
+			List<Producto> listadoProductos= productoService.buscarProductos();
+			request.setAttribute("listadoProductos", listadoProductos);
+			request.getRequestDispatcher("buscar.jsp").forward(request, response);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
