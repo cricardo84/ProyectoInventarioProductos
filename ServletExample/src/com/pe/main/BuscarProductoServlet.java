@@ -28,6 +28,7 @@ public class BuscarProductoServlet extends HttpServlet {
 			
 			//Cargo al request y le asigno un nombre 
 			request.setAttribute("listadoProductos", listadoProductos);
+			
 			//Para direccionar al jsp
 			request.getRequestDispatcher("buscar.jsp").forward(request, response);
 			

@@ -33,8 +33,6 @@ public class ModificarProductoServlet extends HttpServlet {
 			producto.setDescripcion(descripcionProducto);
 			producto.setCantidad(Integer.parseInt(cantidadProducto));
 			
-			System.out.println(producto.toString());
-			
 			ProductoService productoService = new ProductoServiceImpl();
 			productoService.modificarProducto(producto);
 			

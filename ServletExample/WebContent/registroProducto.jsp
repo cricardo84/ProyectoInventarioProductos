@@ -11,7 +11,7 @@
 <body>
 <%@ include file="principal/componentes/navegacion.jsp" %>
 
-<form action="registroProducto"  method="post" class="form-register">
+<form action="registroProducto" enctype="multipart/form-data" method="post" class="form-register">
 	<h2 class="form-titulo">Ingresar Producto</h2>
 	
 	<div class="contenedor-inputs">

@@ -38,4 +38,9 @@ public class ProductoServiceImpl implements ProductoService {
 		db.modificarProducto(producto);
 	}
 	
+	public List<Producto> obtenerProductosActivos() throws Exception{
+		DataBaseConnection db = new DataBaseConnection();
+		return db.obtenerProductosActivos();
+	}
+	
 }

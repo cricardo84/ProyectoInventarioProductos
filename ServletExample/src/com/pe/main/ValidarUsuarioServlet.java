@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pe.bean.Usuario;
+import com.pe.service.ProductoService;
 import com.pe.service.UsuarioService;
+import com.pe.service.impl.ProductoServiceImpl;
 import com.pe.service.impl.UsuarioServiceImpl;
 
 @WebServlet("/validarUsuario")
@@ -29,7 +31,9 @@ public class ValidarUsuarioServlet extends HttpServlet {
 			boolean validacion = usuarioService.validarUsuario(usuarios);
 			
 			if (validacion) {
-				response.sendRedirect("index.jsp");
+				ProductoService productoService = new ProductoServiceImpl();
+				request.setAttribute("productosActivos", productoService.obtenerProductosActivos());
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}else {
 				String error = "La cuenta ingresada no existe";
 				request.setAttribute("mensajeError", error);
