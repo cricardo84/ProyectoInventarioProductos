@@ -11,4 +11,5 @@ public interface ProductoService {
 	void cambiarEstadoProduto(int productoId) throws Exception;
 	Producto obtenerProducto(int productoId) throws Exception;
 	void modificarProducto(Producto producto) throws Exception;
+	List<Producto> obtenerProductosActivos() throws Exception;
 }

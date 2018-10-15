@@ -197,4 +197,34 @@ public class DataBaseConnection {
 		connect.close();
 	}
 	
+	public List<Producto> obtenerProductosActivos() throws Exception{
+		
+		inicializarConexion();
+		
+		statement = connect.createStatement();
+        
+        resultSet = statement.executeQuery("select * from producto where activo = 1");
+		
+		List<Producto> listadoProductos = new ArrayList<>();
+		while(resultSet.next()) {
+			
+			 Long id = resultSet.getLong("id");
+             String nombre = resultSet.getString("nombre");
+             String descripcion = resultSet.getString("descripcion");
+             int cantidad = resultSet.getInt("cantidad");
+             boolean activo = resultSet.getBoolean("activo");
+             
+             Producto producto = new Producto();
+             producto.setId(id);
+             producto.setNombre(nombre);
+             producto.setDescripcion(descripcion);
+             producto.setCantidad(cantidad);
+             producto.setActivo(activo);
+             
+             listadoProductos.add(producto);
+		}
+		
+		return listadoProductos;
+	}
+	
 }

@@ -13,9 +13,6 @@ import com.pe.bean.Producto;
 import com.pe.service.ProductoService;
 import com.pe.service.impl.ProductoServiceImpl;
 
-/**
- * Servlet implementation class ImagenProductoServlet
- */
 @WebServlet("/obtenerImagen")
 public class ImagenProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
