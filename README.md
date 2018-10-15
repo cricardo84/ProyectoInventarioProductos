@@ -3,4 +3,4 @@ Es un proyecto básico de Universidad. Consiste en registrar productos con image
 en la pantalla principal.
 
 # Tecnología
-Java, JSP, Tomcat, MySql
+Java, Servlet, JSP, Tomcat, MySql
