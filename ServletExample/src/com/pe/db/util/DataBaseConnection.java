@@ -135,6 +135,21 @@ public class DataBaseConnection {
 		connect.close();
 		return false;
 	}
+	
+	public int nivelUsuario(String usuario, String password) throws Exception{
+		
+		inicializarConexion();
+		int nivel=0;
+		String nivelUsuarioQuery="Select nivel from usuario where usuario='"+ usuario +"' and contraseña='"+ password +"'";
+		preparedStatement = connect.prepareStatement(nivelUsuarioQuery);
+		resultSet = preparedStatement.executeQuery();
+		
+		while(resultSet.next()) {
+			nivel = resultSet.getInt(1);
+		}
+		connect.close();
+		return nivel;
+	}
 
 	public void cambiarEstadoProducto(int productoId) throws Exception{
 		inicializarConexion();

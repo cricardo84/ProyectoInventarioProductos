@@ -73,7 +73,8 @@ public class RegistroProductoServlet extends HttpServlet {
 			productoService.registrarProducto(producto);
 			
 			//Mostrar la pagina inicial
-			response.sendRedirect("index.jsp");
+			request.setAttribute("productosActivos", productoService.obtenerProductosActivos());
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

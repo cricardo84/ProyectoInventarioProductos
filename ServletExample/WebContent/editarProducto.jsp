@@ -10,7 +10,13 @@
 <title>Modificar Producto</title>
 </head>
 <body>
+
 <%@ include file="principal/componentes/navegacion.jsp" %>
+
+<div class="container" style="text-align: right;">
+	<p style="color:#A4A4A4;">Bienvenido: <%= request.getSession().getAttribute("usuario") %></p>
+	<a href="/ServletExample/CerrarSesionServlet">Cerrar Sesión</a>
+</div>
 
 <form action="modificarProducto"  method="post" class="form-register">
 	<h2 class="form-titulo">Modificar Producto</h2>

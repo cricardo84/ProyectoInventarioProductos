@@ -9,4 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <filter>
+    <filter-name>MiFiltro</filter-name>
+    <filter-class>com.pe.filter.MiFiltro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MiFiltro</filter-name>
+    <url-pattern>/index.jsp</url-pattern>
+    <url-pattern>/buscar.jsp</url-pattern>
+  </filter-mapping>
 </web-app>

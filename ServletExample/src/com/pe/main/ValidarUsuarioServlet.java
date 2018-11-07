@@ -1,11 +1,14 @@
 package com.pe.main;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pe.bean.Usuario;
 import com.pe.service.ProductoService;
@@ -30,14 +33,20 @@ public class ValidarUsuarioServlet extends HttpServlet {
 			UsuarioService usuarioService = new UsuarioServiceImpl();
 			boolean validacion = usuarioService.validarUsuario(usuarios);
 			
+			HttpSession sesion = request.getSession();
+			
 			if (validacion) {
+				
+				sesion.setAttribute("usuario", usuario);
+				sesion.setMaxInactiveInterval(2*60);
 				ProductoService productoService = new ProductoServiceImpl();
 				request.setAttribute("productosActivos", productoService.obtenerProductosActivos());
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("index.jsp").forward(request, response);							
+			
 			}else {
 				String error = "La cuenta ingresada no existe";
 				request.setAttribute("mensajeError", error);
-				request.getRequestDispatcher("validarUsuario.jsp").forward(request, response);
+				request.getRequestDispatcher("/validarUsuario.jsp").forward(request, response);
 			}
 			
 		} catch (Exception e) {

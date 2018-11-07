@@ -8,11 +8,19 @@
 <%@ include file="principal/componentes/head.jsp" %>
 <link rel="stylesheet" type="text/css" href="principal/css/formulario.css">
 <title>Registro de Usuario</title>
+
 </head>
 
 <body>
 
-<%@ include file="principal/componentes/navegacion.jsp" %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.jsp">Megos Ventas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+       </div>
+</nav>
 
 	<form action="registroUsuario" method="post" class="form-register">
 		<h2 class="form-titulo">Registrar Usuario</h2>
