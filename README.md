@@ -1,5 +1,5 @@
 # ProyectoInventarioProductos
-Es un proyecto básico de Universidad. Consiste en registrar productos con imagen y poder mostrar los activos 
+Es un proyecto básico de Universidad. Consiste en registrar productos con imagen y poder mostrar los productos activos 
 en la pantalla principal.
 
 # Tecnología
