@@ -16,6 +16,12 @@
 <body>
 	
 <%@ include file="principal/componentes/navegacion.jsp" %>
+
+<div class="container" style="text-align: right;">
+	<p style="color:#A4A4A4;">Bienvenido: <%= request.getSession().getAttribute("usuario") %></p>
+	<a href="/ServletExample/CerrarSesionServlet">Cerrar Sesión</a>
+</div>
+
 <br>
 	<div class="container">
 		<h2 style="text-align:center;">Listado de productos</h2>
@@ -37,7 +43,7 @@
 				<td class="text-center"><%= producto.getNombre() %></td>
 				<td class="text-center"><%= producto.getDescripcion() %></td>
 				<td class="text-center"><%= producto.getCantidad() %></td>
-				<td class="text-center"><img src="obtenerImagen?id=<%=producto.getId()%>"></td>
+				<td class="text-center"><img style="width:100px; height:100px; " src="obtenerImagen?id=<%=producto.getId()%>"></td>
 				<td class="text-center"><%= (producto.isActivo()==true)?"Activo":"Inactivo" %></td>
 				<td class="text-center">
 					<a href="obtenerProducto?id=<%= producto.getId() %>" class="btn btn-warning btn-sm">Editar</a>

@@ -1,8 +1,7 @@
- <!-- Page Content -->
- 
 <%@ page import="com.pe.bean.Producto"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
+
 
     <div class="container">
 
@@ -18,7 +17,6 @@
           </div>
 
         </div>
-        <!-- /.col-lg-3 -->
 
         <div class="col-lg-9">
 
@@ -49,19 +47,23 @@
             </a>
           </div>
           
+         </div>
+         
+        </div>
+          
           <% List<Producto> listadoProducto = (ArrayList<Producto>)request.getAttribute("productosActivos");
           		for(Producto producto : listadoProducto){%>
 
-          <div class="row" id="CategoriaHombre">
+          <div style="margin: auto; margin-top:60px; margin-bottom:25px; width:100%; height:1500px;">
 
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div style="width: 250px; height: 450px; border: 1pz solid black; padding-right: 25px; padding-top:20px; display: inline-block; float: left;">
               <div class="card h-100">
-                <img src="obtenerImagen?id=<%=producto.getId()%>">
+                <img style="width: 100%; height:40%;" src="obtenerImagen?id=<%=producto.getId()%>">
                 <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#"><%= producto.getNombre() %></a>
+                  <h4 class="card-title" style="text-align: center;">
+                    <p style="#2E64FE;"><%= producto.getNombre() %></p>
                   </h4>
-                  <h5><%= producto.getCantidad() %></h5>
+                  <h5>Cantidad: <%= producto.getCantidad() %></h5>
                   <p class="card-text"><%= producto.getDescripcion() %></p>
                 </div>
                 <div class="card-footer">
@@ -74,13 +76,8 @@
               %>
    
          </div>
-          <!-- /.row -->
-
-        </div>
-        <!-- /.col-lg-9 -->
-
-      </div>
-      <!-- /.row -->
-
+         
+              <footer class="py-5 bg-dark">
+        		<p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+ 	 		  </footer>
     </div>
-    <!-- /.container -->

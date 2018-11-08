@@ -36,7 +36,7 @@ public class RegistroUsuarioServlet extends HttpServlet {
 			UsuarioService usuarioService = new UsuarioServiceImpl();
 			usuarioService.registrarUsuario(usuario);
 			
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("validarUsuario.jsp");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

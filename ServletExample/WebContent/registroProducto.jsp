@@ -9,7 +9,13 @@
 <title>Registro de producto</title>
 </head>
 <body>
+
 <%@ include file="principal/componentes/navegacion.jsp" %>
+
+<div class="container" style="text-align: right;">
+	<p style="color:#A4A4A4;">Bienvenido: <%= request.getSession().getAttribute("usuario") %></p>
+	<a href="/ServletExample/CerrarSesionServlet">Cerrar Sesión</a>
+</div>
 
 <form action="registroProducto"  method="post" class="form-register" enctype="multipart/form-data">
 	<h2 class="form-titulo">Ingresar Producto</h2>
@@ -19,7 +25,7 @@
 		<input type="text" name="nombreProducto" placeholder="Nombre" class="input-100" required/>
 		<input type="text" name="descripcionProducto" placeholder="Descripción" class="input-100" required/>
 		<input type="text" name="cantidadProducto" placeholder="Cantidad" class="input-100" required/>
-		<input type="file" name="imagenProducto"/>
+		<input type="file" name="imagenProducto" required/>
 		<input type="submit" value="Enviar" class="btn-enviar"/>
 
 	</div>

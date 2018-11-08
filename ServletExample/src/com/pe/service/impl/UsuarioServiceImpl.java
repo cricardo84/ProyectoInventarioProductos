@@ -16,5 +16,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 			DataBaseConnection db = new DataBaseConnection();
 			return db.autenticacion(usuario);		
 	}
+	
+	/*public int nivelUsuario(Usuario usuario) throws Exception {
+		DataBaseConnection db = new DataBaseConnection();
+		return db.nivelUsuario(usuario);
+	}*/
 
 }
